@@ -1,2 +1,6 @@
 ## Blade Runner theme for sddm
-### currently in active development
+### stable enough to use!
+
+It's worth to add:
+* improve colors
+* add possibility to change language
