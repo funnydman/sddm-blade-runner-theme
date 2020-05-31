@@ -12,7 +12,7 @@ Rectangle {
     TextConstants { id: textConstants }
 
     Connections {
-	// some stuff here; keep the same at least for now
+    // some stuff here; keep the same at least for now
         target: sddm
 
         onLoginSucceeded: {
@@ -23,6 +23,7 @@ Rectangle {
         onLoginFailed: {
             password.text = ""
             errorMessage.color = "red"
+            errorMessage.pixelSize = 12
             errorMessage.text = textConstants.loginFailed
         }
     }
@@ -53,15 +54,15 @@ Rectangle {
         }
 
         Rectangle {
-            // the main block with inputs 
+            // the main block with inputs
             id: rectangle
             anchors.centerIn: parent
             width: Math.max(220, mainColumn.implicitWidth + 50)
             height: Math.max(164, mainColumn.implicitHeight + 50)
             color: '#33ffffff' // ARGB
-	    border.color: '#ababab'
-	    border.width: 1
-            radius: 6 
+        border.color: '#ababab'
+        border.width: 1
+            radius: 6
 
             Column {
                 id: mainColumn
@@ -71,15 +72,16 @@ Rectangle {
                 Column {
                     width: 260 // quick fix; there was parent.width
                     spacing: 4
-		    //anchors.centerIn: parent
+            //anchors.centerIn: parent
                     Text {
                         id: lblName
                         width: parent.width
-			horizontalAlignment: Text.AlignHCenter
-			wrapMode: Text.WordWrap
-			color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+            color: "white"
                         //text: textConstants.userName
-                        text: "Hello, %1".arg(userModel.lastUser) // TODO: proper message from translations
+                        // TODO: proper message from translations
+                        text: "Hello, %1".arg(userModel.lastUser)
                         font.bold: true
                         font.pixelSize: 17
                     }
@@ -89,32 +91,24 @@ Rectangle {
                 Column {
                     width: parent.width
                     spacing : 4
-                    //Text {
-                    //    id: lblPassword
-                    //    width: parent.width
-                    //    text: textConstants.password
-                    //    font.bold: true
-                    //    font.pixelSize: 12
-                    //}
-
                     TextBox {
                         id: password
                         width: parent.width; height: 30
                         font.pixelSize: 14
-			color: "#204d3791"
-			radius:4
-			echoMode: TextInput.Password
-		        focus: true
+                        color: "#204d3791"
+                        radius:4
+                        echoMode: TextInput.Password
+                        focus: true
                         // KeyNavigation.backtab: name; KeyNavigation.tab: session
-			property string placeholderText: qsTr("&nbsp;&nbsp;Enter password here...")
+                        property string placeholderText: qsTr("&nbsp;&nbsp;Enter password here...")
 
-        		Text {
-            			text: password.placeholderText
-				textFormat: Text.RichText
-            			color: "white"
-            			visible: !password.text && !password.activeFocus
-				anchors.verticalCenter: parent.verticalCenter
-        		}
+                        Text {
+                                text: password.placeholderText
+                                textFormat: Text.RichText
+                                color: "white"
+                                visible: !password.text && !password.activeFocus
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
 
                         Keys.onPressed: {
                             if (event.key === Qt.Key_Return || event.key === Qt.Key_Enter) {
@@ -124,9 +118,6 @@ Rectangle {
                         }
                     }
                 }
-
-                
-
                 Column {
                     width: parent.width
                     Text {
@@ -141,20 +132,15 @@ Rectangle {
                     spacing: 4
 
                     //anchors.horizontalCenter: parent.horizontalCenter
-		    property int btnWidth: Math.max(loginButton.implicitWidth, 80) + 8
-	
+                    property int btnWidth: Math.max(loginButton.implicitWidth, 80) + 8
+
                     Button {
-                        id: loginButton
-                        text: textConstants.login
-			width: parent.btnWidth
-			//color: "#ccc"
-
-                        radius: 4 
-                        onClicked: sddm.login(userName, password.text, sessionIndex)
-
-                        //KeyNavigation.backtab: layoutBox; KeyNavigation.tab: shutdownButton
+                            id: loginButton
+                            radius: 4
+                            text: textConstants.login
+                            width: parent.btnWidth
+                            onClicked: sddm.login(userName, password.text, sessionIndex)
                     }
-
                 }
             }
         }
