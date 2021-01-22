@@ -1,5 +1,6 @@
-## Blade Runner theme for sddm
-### stable enough to use!
+## Blade Runner theme for SDDM
+
+![blade-runner-theme.png](./blade-runner-theme.png)
 
 It's worth to add:
 * improve colors
