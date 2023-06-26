@@ -3,9 +3,9 @@
 ![blade-runner-theme.png](./blade-runner-theme.png)
 
 It's worth adding:
-* improve colors
-* add possibility to change language
+* Improve colors
+* Add the ability to change input languages
+
 
 Test with: 
-cd ~/.config/themes/blade-runner-theme/
 sddm-greeter --test-mode --theme .
